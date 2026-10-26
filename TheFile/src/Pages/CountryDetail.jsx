@@ -1,33 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { CountryContext } from "../context/CountryContext";
 import "../styles/CountryDetail.css";
 
 const CountryDetail = () => {
     const { name } = useParams();
     const navigate = useNavigate(); 
-    const [country, setCountry] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        if (!name) return;
-    
-        const fetchCountryDetails = async () => {
-            try {
-                const response = await axios.get(`https://restcountries.com/v3.1/name/${name}`);
-                console.log("API Response:", response.data); 
-                setCountry(response.data[0]); 
-                setLoading(false);
-            } catch (error) {
-                console.error("Error fetching country details:", error);
-                setError("Failed to load country details. Please try again.");
-                setLoading(false);
-            }
-        };
-    
-        fetchCountryDetails();
-    }, [name]);
+    const { countries, loading } = useContext(CountryContext);
+    const country = countries.find((item) => item.name.common.toLowerCase() === (name || "").toLowerCase());
 
     if (!name) {
         return (
@@ -45,10 +25,6 @@ const CountryDetail = () => {
         return <p className="loading">Loading country details...</p>;
     }
 
-    if (error) {
-        return <p className="error-message">{error}</p>;
-    }
-
     if (!country) {
         return <p className="error-message">Country not found.</p>;
     }
@@ -64,7 +40,7 @@ const CountryDetail = () => {
                 <p><strong>Area:</strong> {country.area.toLocaleString()} km²</p>
                 <p><strong>Currency:</strong> {Object.values(country.currencies || {}).map(c => c.name).join(", ")}</p>
                 <p><strong>Language:</strong> {Object.values(country.languages || {}).join(", ")}</p>
-                <a href={country.maps.googleMaps} target="_blank" rel="noopener noreferrer" className="map-link">
+                <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(country.name.common)}`} target="_blank" rel="noopener noreferrer" className="map-link">
                     View on Google Maps
                 </a>
             </div>

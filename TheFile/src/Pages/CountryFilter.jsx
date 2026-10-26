@@ -1,24 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useMemo, useState } from "react";
+import { CountryContext } from "../context/CountryContext";
 import "../styles/CountryFilter.css";
 
 const CountryFilter = () => {
+    const { countries, loading } = useContext(CountryContext);
     const [region, setRegion] = useState("");
     const [language, setLanguage] = useState("");
     const [independent, setIndependent] = useState(false);
-    const [countries, setCountries] = useState([]);
-
-    useEffect(() => {
-        let url = "https://restcountries.com/v3.1/all";
-
-        if (region) url = `https://restcountries.com/v3.1/region/${region}`;
-        else if (language) url = `https://restcountries.com/v3.1/lang/${language}`;
-        else if (independent) url = `https://restcountries.com/v3.1/independent?status=true`;
-
-        fetch(url)
-            .then((res) => res.json())
-            .then((data) => setCountries(data))
-            .catch((err) => console.error("Error fetching data:", err));
-    }, [region, language, independent]);
+    const filteredCountries = useMemo(() => countries.filter((country) => {
+        if (region && country.region?.toLowerCase() !== region.toLowerCase()) return false;
+        if (language && !Object.values(country.languages || {}).some((item) => item.toLowerCase().includes(language.toLowerCase()))) return false;
+        if (independent && !country.independent) return false;
+        return true;
+    }), [countries, region, language, independent]);
 
     return (
         <div className="filter-page">
@@ -56,9 +50,9 @@ const CountryFilter = () => {
             </div>
 
             <div className="country-list">
-                {countries.map((country) => (
+                {loading ? <p>Loading countries...</p> : filteredCountries.map((country) => (
                     <div key={country.cca3} className="country-card">
-                        <img src={country.flags.png} alt={country.name.common} className="flag" />
+                        <img src={country.flags?.png} alt={country.name.common} className="flag" />
                         <h3>{country.name.common}</h3>
                         <p>{country.region}</p>
                     </div>

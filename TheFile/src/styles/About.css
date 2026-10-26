@@ -1,0 +1,41 @@
+.about-page { width: min(1080px, calc(100% - 48px)); margin: 0 auto; padding: 38px 0 88px; }
+.about-hero { min-height: 400px; padding: clamp(34px, 6vw, 72px); display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(210px, .65fr); gap: 56px; align-items: end; position: relative; overflow: hidden; border-radius: 4px 64px 4px 4px; background: var(--navy); color: #fff; }
+.about-hero::after { content: ''; position: absolute; width: 360px; height: 360px; right: -105px; top: -180px; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; box-shadow: 0 0 0 32px rgba(255,255,255,.025), 0 0 0 64px rgba(255,255,255,.02); pointer-events: none; }
+.about-hero-copy, .about-hero-note { position: relative; z-index: 1; }
+.about-eyebrow, .about-note-index, .about-section-label { font: 700 10px/1.4 'DM Sans', sans-serif; letter-spacing: .16em; }
+.about-eyebrow { margin: 0 0 24px; color: #f0a88b; }
+.about-hero h1 { max-width: 670px; margin: 0; color: #fff; font: 800 clamp(38px, 6vw, 66px)/1.02 'Manrope', sans-serif; letter-spacing: -.055em; }
+.about-lead { max-width: 590px; margin: 22px 0 26px; color: #d3dfdf; font-size: 16px; line-height: 1.8; }
+.about-cta { display: inline-flex; align-items: center; gap: 24px; padding: 13px 17px; border-radius: 3px 14px 3px 3px; background: #f4eee4; color: var(--ink); text-decoration: none; font-size: 13px; font-weight: 700; transition: .2s ease; }
+.about-cta span { color: var(--teal); font-size: 17px; }
+.about-cta:hover { background: #fff; transform: translateY(-2px); }
+.about-hero-note { padding: 20px 0 0 22px; border-top: 1px solid rgba(255,255,255,.25); }
+.about-note-index { color: #efaa8d; }
+.about-hero-note p { margin: 15px 0 0; color: #fff; font: 600 17px/1.55 'Manrope', sans-serif; }
+.about-story { display: grid; grid-template-columns: .55fr 1.45fr; gap: 56px; padding: 78px 7%; border-bottom: 1px solid var(--line); }
+.about-section-label { display: flex; align-items: flex-start; gap: 12px; color: var(--muted); }
+.about-section-label span:first-child { color: var(--coral); }
+.about-story-copy { max-width: 700px; }
+.about-story h2, .about-pillar h2, .about-team h2 { margin: 0; color: var(--ink); font: 700 clamp(24px, 3vw, 34px)/1.2 'Manrope', sans-serif; letter-spacing: -.035em; }
+.about-story-copy p, .about-pillar > p, .about-team > div:last-child > p { margin: 18px 0 0; color: var(--muted); font-size: 15px; line-height: 1.85; }
+.about-pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 30px 0; }
+.about-pillar { min-height: 310px; padding: 30px; border: 1px solid var(--line); border-radius: 4px 28px 4px 4px; background: var(--surface); }
+.about-pillar .about-section-label { margin-bottom: 42px; }
+.about-pillar h2 { font-size: 25px; }
+.about-vision { background: #e8eeea; border-color: #e8eeea; }
+.about-mission ul { margin: 18px 0 0; padding: 0; list-style: none; }
+.about-mission li { padding: 11px 0 11px 19px; position: relative; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; line-height: 1.65; }
+.about-mission li::before { content: '—'; position: absolute; left: 0; color: var(--coral); }
+.about-team { display: grid; grid-template-columns: .55fr 1.45fr; gap: 56px; padding: 58px 7%; border-top: 1px solid var(--line); }
+.about-team > div:last-child { max-width: 700px; }
+.about-team h2 { font-size: 28px; }
+@media (max-width: 720px) {
+  .about-page { width: calc(100% - 32px); padding: 24px 0 56px; }
+  .about-hero { min-height: 0; padding: 34px 26px; grid-template-columns: 1fr; gap: 34px; border-top-right-radius: 42px; }
+  .about-hero h1 { font-size: clamp(38px, 11vw, 54px); }
+  .about-hero-note { max-width: 300px; }
+  .about-story, .about-team { grid-template-columns: 1fr; gap: 20px; padding: 46px 8px; }
+  .about-pillars { grid-template-columns: 1fr; padding: 20px 0; }
+  .about-pillar { min-height: 0; padding: 25px; }
+  .about-pillar .about-section-label { margin-bottom: 30px; }
+}

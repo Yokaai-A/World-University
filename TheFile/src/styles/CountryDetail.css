@@ -1,0 +1,17 @@
+.country-detail-container { position: relative; width: min(900px, calc(100% - 40px)); min-height: calc(100vh - 76px); margin: 0 auto; padding: 56px 0 70px; display: flex; justify-content: center; align-items: flex-start; }
+.country-detail-container > .back-button { align-self: flex-start; position: absolute; top: 25px; left: 0; }
+.back-button { padding: 10px 15px; border: 1px solid var(--line); border-radius: 30px; background: transparent; color: var(--ink); cursor: pointer; font-size: 13px; font-weight: 700; transition: .2s; }
+.back-button:hover { border-color: var(--teal); color: var(--teal); }
+.country-detail { width: 100%; margin-top: 26px; padding: clamp(26px, 5vw, 54px); display: grid; grid-template-columns: minmax(230px, .9fr) 1.1fr; gap: 10px 38px; align-items: center; border: 1px solid var(--line); border-radius: 4px 34px 4px 4px; background: var(--surface); box-shadow: var(--shadow); }
+.country-detail h1 { grid-column: 1 / -1; margin: 0 0 12px; color: var(--ink); text-align: left; font: 800 clamp(30px, 5vw, 48px)/1.1 'Manrope', sans-serif; letter-spacing: -.04em; }
+.country-detail .flag { width: 100%; max-height: 240px; object-fit: cover; border-radius: 3px 20px 3px 3px; box-shadow: 0 8px 24px rgba(23,43,58,.1); }
+.country-detail p { grid-column: 2; width: 100%; margin: 0; padding: 11px 0; border-bottom: 1px solid var(--line); color: var(--muted); font-size: 15px; line-height: 1.5; }
+.country-detail p strong { color: var(--ink); }
+.country-detail .flag { grid-row: 2 / span 5; }
+.country-detail a.map-link { grid-column: 2; justify-self: start; display: inline-block; margin-top: 12px; padding: 12px 17px; border-radius: 3px 14px 3px 3px; background: var(--teal); color: white; text-decoration: none; font-size: 13px; font-weight: 700; }
+.country-detail a.map-link:hover { background: var(--navy); }
+.loading, .error-message { padding: 70px 20px; color: var(--muted); text-align: center; font-size: 17px; }
+.no-country-selected { width: min(560px, calc(100% - 40px)); margin: 90px auto; padding: 36px; border: 1px solid #ead5ca; border-radius: 4px 28px 4px 4px; background: var(--surface); color: var(--ink); text-align: center; }
+.no-country-selected h2 { color: #9a4c36; font: 700 24px 'Manrope', sans-serif; }
+.no-country-selected .back-button { display: block; margin: 20px auto 0; background: var(--teal); color: white; }
+@media(max-width: 650px) { .country-detail-container { width: calc(100% - 32px); padding-top: 65px; } .country-detail { grid-template-columns: 1fr; gap: 8px; margin-top: 20px; } .country-detail h1, .country-detail p, .country-detail a.map-link { grid-column: 1; } .country-detail .flag { grid-row: auto; max-height: 200px; margin-bottom: 8px; } }

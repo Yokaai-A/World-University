@@ -1,0 +1,4 @@
+.filter-page { min-height: calc(100vh - 76px); padding: 48px max(24px, calc((100% - 1160px)/2)) 72px; text-align: left; }
+.filter-page > .filter-title { display: block; margin: 0 0 24px; color: var(--ink); font: 800 clamp(30px, 4vw, 46px)/1.15 'Manrope', sans-serif; letter-spacing: -.04em; text-transform: none; text-shadow: none; }
+.filter-page .switch-label { color: var(--ink); text-transform: none; letter-spacing: 0; }
+@media (max-width: 680px) { .filter-page { padding: 34px 18px 50px; } }
